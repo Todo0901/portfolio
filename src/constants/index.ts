@@ -9,7 +9,7 @@ export const PROJECTS = [
   {
     title: "Удахгүй нэмэгдэнэ...",
     description: "Одоогоор шинэ төсөл дээр ажиллаж байна. Тун удахгүй гайхалтай шинэ бүтээлээрээ бэлэг барих болно.",
-    image: "",
+    image: "/wsp.png",
     link: "#",
     tags: ["Fullstack", "Next.js", "PostgreSQL"],
     status: "upcoming"
