@@ -1,20 +1,30 @@
 import { Badge } from "@/components/ui/badge";
-
-const skills = ["React", "CSS", "HTML", "JavaScript", "TypeScript", "Next.js", "Tailwind CSS"];
-
+import Image from "next/image";
+import { SKILLS } from "@/constants"; 
 export default function Skills() {
   return (
-        <>
-        <section className="py-16">
-        <h2 className="text-2xl font-bold mb-6 text-center">Миний чадварууд</h2>
-        <div className="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto">
-            {skills.map((skill) => (
-            <Badge key={skill} variant="outline" className="text-lg py-2 px-4 hover:bg-primary hover:text-white transition-colors cursor-default">
-                {skill}
-            </Badge>
-            ))}
-        </div>
-        </section>
-    </>
+    <section id="skill" className="py-16">
+      <h2 className="text-2xl font-bold mb-8 text-center">Миний чадварууд</h2>
+      <div className="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto">
+        {SKILLS.map((skill) => (
+          <Badge 
+            key={skill.name} 
+            variant="outline" 
+            className="flex items-center gap-2 text-lg py-2 px-4 hover:bg-primary hover:text-white transition-all duration-300 cursor-default group"
+          >
+            <div className="relative w-6 h-6">
+              <Image 
+                src={skill.icon} 
+                alt={`${skill.name} logo`}
+                width={24}
+                height={24}
+                className="object-contain"
+              />
+            </div>
+            <span>{skill.name}</span>
+          </Badge>
+        ))}
+      </div>
+    </section>
   );
 }

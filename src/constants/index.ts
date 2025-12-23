@@ -1,3 +1,4 @@
+
 export const PROJECTS = [
   {
     title: "Project Group 1",
@@ -16,7 +17,15 @@ export const PROJECTS = [
   },
 ];
 
-export const SKILLS = ["React", "CSS", "HTML", "JavaScript", "TypeScript", "Next.js", "Tailwind CSS"];
+export const SKILLS = [
+  { name: "React", icon: "/logos/react.png" },
+  { name: "CSS", icon: "/logos/css.png" },
+  { name: "HTML", icon: "/logos/html.png" },
+  { name: "JavaScript", icon: "/logos/js.png" },
+  { name: "TypeScript", icon: "/logos/ts.png" },
+  { name: "Next.js", icon: "/logos/nextjs.png" },
+  { name: "Tailwind CSS", icon: "/logos/tailwind.png" },
+];
 
 export const CONTACT = {
   email: "todoomn0901@gmail.com",

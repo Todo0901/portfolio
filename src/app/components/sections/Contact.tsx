@@ -4,7 +4,7 @@ import { CONTACT } from "@/constants";
 export default function Contact() {
   return (
     <>
-        <section id="contact" className="py-20 border-t border-dashed">
+        <section id="contact" className="py-20 border-t border-dashed z-1">
         <div className="max-w-xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Холбоо барих</h2>
             <p className="text-muted-foreground mb-10">
