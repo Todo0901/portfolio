@@ -2,11 +2,11 @@
 import React, { useState, useEffect } from 'react';
 
 const Minigame = () => {
-  const [board, setBoard] = useState(Array(9).fill(null));
+  const [board, setBoard] = useState<(string | null)[]>(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
   const [isThinking, setIsThinking] = useState(false);
 
-  const calculateWinner = (squares: any[]) => {
+  const calculateWinner = (squares: (string | null)[]) => {
     const lines = [
       [0, 1, 2], [3, 4, 5], [6, 7, 8],
       [0, 3, 6], [1, 4, 7], [2, 5, 8],
@@ -19,7 +19,7 @@ const Minigame = () => {
     return null;
   };
 
-  const minimax = (squares: any[], depth: number, isMaximizing: boolean): number => {
+  const minimax = (squares: (string | null)[], depth: number, isMaximizing: boolean): number => {
     const winner = calculateWinner(squares);
     if (winner === 'O') return 10 - depth;
     if (winner === 'X') return depth - 10;
@@ -50,7 +50,15 @@ const Minigame = () => {
     }
   };
 
-  const getBestMove = (squares: any[]) => {
+  const getMove = (squares: (string | null)[]) => {
+    const isRandomMove = Math.random() < 0.2; 
+    
+    const availableMoves = squares.map((v, i) => v === null ? i : null).filter(v => v !== null) as number[];
+
+    if (isRandomMove) {
+      return availableMoves[Math.floor(Math.random() * availableMoves.length)];
+    }
+
     let bestScore = -Infinity;
     let move = -1;
     for (let i = 0; i < 9; i++) {
@@ -74,15 +82,15 @@ const Minigame = () => {
     if (!isXNext && !winner && !isDraw) {
       setIsThinking(true);
       const timer = setTimeout(() => {
-        const bestMove = getBestMove([...board]);
-        if (bestMove !== -1) {
+        const move = getMove([...board]);
+        if (move !== -1) {
           const nextBoard = board.slice();
-          nextBoard[bestMove] = 'O';
+          nextBoard[move] = 'O';
           setBoard(nextBoard);
           setIsXNext(true);
         }
         setIsThinking(false);
-      }, 500);
+      }, 600);
       return () => clearTimeout(timer);
     }
   }, [isXNext, board, winner, isDraw]);
@@ -96,33 +104,35 @@ const Minigame = () => {
   };
 
   return (
-    <div id='game' className="w-full max-w-md mx-auto p-6 bg-gray-900/50 border border-gray-800 rounded-3xl shadow-xl backdrop-blur-sm">
-      <h3 className="text-center text-white text-xl mb-4 font-bold tracking-tighter uppercase">
-        Beat the Unbeatable Bot 🤖
+    <div className="w-full max-w-md mx-auto p-8 bg-slate-900 border border-slate-800 rounded-[2rem] shadow-2xl">
+      <h3 className="text-center text-white text-2xl mb-2 font-black tracking-tight uppercase italic">
+        Tic-Tac-Toe <span className="text-blue-500">Pro</span>
       </h3>
+      <p className="text-center text-slate-500 text-sm mb-6">Бот заримдаа алдаа гаргаж магадгүй...</p>
 
-      <div className="text-center mb-6 h-8 text-lg font-medium">
+      <div className="text-center mb-8 h-10 flex items-center justify-center">
         {winner ? (
-          <span className={winner === 'X' ? 'text-green-400' : 'text-red-500'}>
+          <div className={`px-6 py-1 rounded-full text-lg font-bold animate-bounce ${winner === 'X' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
             {winner === 'X' ? 'ТА ЯЛЛАА! 🏆' : 'БОТ ЯЛЛАА! 🤖'}
-          </span>
+          </div>
         ) : isDraw ? (
-          <span className="text-yellow-400">ТЭНЦЛЭЭ! 🤝</span>
+          <div className="px-6 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-lg font-bold">ТЭНЦЛЭЭ! 🤝</div>
         ) : (
-          <span className="text-gray-400">
-            {isXNext ? 'Таны ээлж (X)' : 'Бот тооцоолж байна...'}
-          </span>
+          <div className="text-slate-400 font-medium">
+            {isXNext ? 'Таны ээлж (X)' : 'Бот бодож байна...'}
+          </div>
         )}
       </div>
 
-      <div className="grid grid-cols-3 gap-3 mb-6">
+      <div className="grid grid-cols-3 gap-4 mb-8">
         {board.map((square, i) => (
           <button 
             key={i} 
             onClick={() => handleClick(i)} 
-            className={`w-full aspect-square bg-gray-800/80 border border-gray-700 rounded-2xl text-3xl font-black flex items-center justify-center transition-all
-              ${!square && isXNext && !winner ? 'hover:border-blue-500 hover:bg-gray-700 active:scale-95' : ''}
-              ${square === 'X' ? 'text-blue-400' : 'text-red-500'}`}
+            disabled={!!square || !isXNext || !!winner}
+            className={`w-full aspect-square bg-slate-800/50 border-2 border-slate-700/50 rounded-2xl text-4xl font-black flex items-center justify-center transition-all duration-200
+              ${!square && isXNext && !winner ? 'hover:border-blue-500/50 hover:bg-slate-700/50 active:scale-90' : ''}
+              ${square === 'X' ? 'text-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.2)]' : 'text-rose-500 shadow-[0_0_20px_rgba(244,63,94,0.2)]'}`}
           >
             {square}
           </button>
@@ -131,9 +141,9 @@ const Minigame = () => {
 
       <button 
         onClick={() => { setBoard(Array(9).fill(null)); setIsXNext(true); }} 
-        className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-500 transition-colors shadow-lg shadow-blue-900/20"
+        className="w-full bg-white text-slate-900 py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-blue-400 hover:text-white transition-all active:scale-95 shadow-lg"
       >
-        Тоглоомыг шинэчлэх
+        Дахин эхлэх
       </button>
     </div>
   );
