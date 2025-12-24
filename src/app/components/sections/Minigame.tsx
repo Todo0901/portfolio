@@ -104,7 +104,7 @@ const Minigame = () => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-8 bg-slate-900 border border-slate-800 rounded-[2rem] shadow-2xl">
+    <div id='minigame' className="w-full max-w-md mx-auto p-8 bg-slate-900 border border-slate-800 rounded-[2rem] shadow-2xl">
       <h3 className="text-center text-white text-2xl mb-2 font-black tracking-tight uppercase italic">
         Tic-Tac-Toe <span className="text-blue-500">Pro</span>
       </h3>

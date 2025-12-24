@@ -18,7 +18,7 @@ const Header = () => {
           <a href="#Hero">Home</a>
           <a href="#skill">Skills</a>
           <a href="#projects">Projects</a>
-          <a href="#game">Game</a>
+          <a href="#minigame">Game</a>
           <a href="#contact">Contacts</a>
         </div>
     </div>
