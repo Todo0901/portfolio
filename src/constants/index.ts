@@ -1,14 +1,14 @@
 
 export const PROJECTS = [
   {
-    title: "Project Group 1",
+    title: "Group Project 1",
     description: "Next.js болон Tailwind CSS ашиглан багаараа хөгжүүлсэн вэб .",
     image: "/wsp.png",
     link: "https://project-group1.vercel.app/",
     tags: ["Next.js", "React", "Tailwind", "Vercel"]
   },
   {
-    title: "Project Group 2",
+    title: "Group Project 2",
     description: "Next.js болон Tailwind CSS ашиглан багаараа хөгжүүлсэн танин медехуйн вэб .",
     image: "/wsp2.png",
     link: "https://planet-eta.vercel.app/",
