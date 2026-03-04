@@ -2,18 +2,17 @@
 export const PROJECTS = [
   {
     title: "Project Group 1",
-    description: "Next.js болон Tailwind CSS ашиглан багаараа хөгжүүлсэн вэб аппликейшн.",
+    description: "Next.js болон Tailwind CSS ашиглан багаараа хөгжүүлсэн вэб .",
     image: "/wsp.png",
     link: "https://project-group1.vercel.app/",
     tags: ["Next.js", "React", "Tailwind", "Vercel"]
   },
   {
-    title: "Удахгүй нэмэгдэнэ...",
-    description: "Одоогоор шинэ төсөл дээр ажиллаж байна. Тун удахгүй гайхалтай шинэ бүтээлээрээ бэлэг барих болно.",
-    image: "/wsp.png",
-    link: "#",
-    tags: ["Fullstack", "Next.js", "PostgreSQL"],
-    status: "upcoming"
+    title: "Project Group 2",
+    description: "Next.js болон Tailwind CSS ашиглан багаараа хөгжүүлсэн танин медехуйн вэб .",
+    image: "/wsp2.png",
+    link: "https://planet-eta.vercel.app/",
+    tags: ["Next.js", "React", "Tailwind", "Vercel"],
   },
 ];
 
